@@ -1,17 +1,21 @@
-pragma solidity ^0.8.4;
 
 contract Intro {
     function intro() public pure returns (uint16) {
         uint256 mol = 420;
 
-        // Yul assembly magic happens within assembly{} section
         assembly {
-            // stack variables are instantiated with
-            // let variable_name := VALßUE
-            // instantiate a stack variable that holds the value of mol
-            // To return it needs to be stored in memory
-            // with command mstore(MEMORY_LOCATION, STACK_VARIABLE)
-            // to return you need to specify address and the size from the starting point
+            // Store `mol` at the default free memory location.
+            // Solidity usually keeps the free memory pointer at 0x40.
+            let ptr := mload(0x40)
+            // Solidity expects the returned data to start at 0x20 bytes into the allocated memory
+            // because the first 0x20 bytes are used to define the length of the data.
+            mstore(ptr, mol)
+            // Return the data starting from `ptr + 0x20` with a length of 0x02 (2 bytes for uint16)
+            return(add(ptr, 0x20), 0x02)
         }
     }
 }
+
+
+
+
