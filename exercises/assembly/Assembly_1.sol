@@ -5,7 +5,7 @@ contract Intro {
 
         assembly {
             // Store `mol` at the default free memory location.
-            // Solidity usually keeps the free memory pointer at 0x40.
+            // free memory pointer at 0x40.
             let ptr := mload(0x40)
             // Solidity expects the returned data to start at 0x20 bytes into the allocated memory
             // because the first 0x20 bytes are used to define the length of the data.
