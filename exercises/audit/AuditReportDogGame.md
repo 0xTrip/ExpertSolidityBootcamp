@@ -6,9 +6,9 @@ pragma solidity ^0.8.4;
 ```
 allows multiple versions of the compiler to be used, this could lead to unintended effects.
 
-## UI decides the 100 winners - ??
+## addWinners function is public - Critical
 
-How does the UI implement this, this may be a vulerability
+The UI seems to call the 'addWinners' function, this is public and can be called by anyonme from outside the UI to add any address as a winner.
 
 ## numberPlayers can be updated without sending any ETH - Critical
 
