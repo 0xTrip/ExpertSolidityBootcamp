@@ -1,3 +1,5 @@
+# AuditReportDogGame
+
 ## addWinners function is public - Critical
 
 The UI seems to call the 'addWinners' function, this is public and can be called by anyonme from outside the UI to add any address as a winner. This should be gated via a modifier such as onlyOwner.
